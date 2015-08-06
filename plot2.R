@@ -16,8 +16,8 @@ close(conn)
 
 colnames(ret) <- colnames(read.table(dataFile, header = T, nrows = 1, sep = ";"))
 
-with(ret, hist(Global_active_power, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)"))
+with(ret, plot(Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)"))
 
 # have to add the write statements?
-dev.copy(png, "plot1.png")
+dev.copy(png, "plot2.png")
 dev.off()
