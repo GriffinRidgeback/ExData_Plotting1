@@ -25,7 +25,6 @@ ret$datetime <- strptime(results, format = "%d/%m/%Y  %H:%M:%S")
 
 png("plot3.png")
 with(ret, plot(datetime, Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering"))
-#lines(ret$Sub_metering_1)
 lines(ret$datetime, ret$Sub_metering_2, col = "red")
 lines(ret$datetime, ret$Sub_metering_3, col = "blue")
 legend("topright", lty = 1, col = c("black", "red", "blue"), legend = names(ret)[7:9])
