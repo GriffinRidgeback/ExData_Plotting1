@@ -22,10 +22,10 @@ colnames(ret) <- colnames(read.table(dataFile, header = T, nrows = 1, sep = ";")
 results <-paste(ret$Date, ret$Time, collapse = NULL, sep = ' ')
 ret$datetime <- strptime(results, format = "%d/%m/%Y  %H:%M:%S")
 
+png("plot2.png")
+
 # Section Four ----
-# with(ret, plot(Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)"))
 with(ret, plot(datetime, Global_active_power, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 
 # have to add the write statements?
-dev.copy(png, "plot2.png")
 dev.off()
