@@ -28,10 +28,9 @@ par(mfcol = c(2, 2))
 with(ret, plot(datetime, Global_active_power, type = "l", xlab = "", ylab = "Global Active Power"))
 
 # r2, c1
-with(ret, plot(Sub_metering_1, type = "n", ylab = "Energy sub metering"))
-lines(ret$Sub_metering_1)
-lines(ret$Sub_metering_2, col = "red")
-lines(ret$Sub_metering_3, col = "blue")
+with(ret, plot(datetime, Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering"))
+lines(ret$datetime, ret$Sub_metering_2, col = "red")
+lines(ret$datetime, ret$Sub_metering_3, col = "blue")
 legend("topright", lty = 1, bty = "n", col = c("black", "red", "blue"), legend = names(ret)[7:9])
 
 # r1, c2
