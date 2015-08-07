@@ -1,24 +1,50 @@
-# Section One ----
+#
+# R code for Course Project 1 in the 
+# Coursera course "Exploratory Data Analysis"
+#
+# This file creates plot1.png according to the plot given in the assignment
+
+# Section One: Get the data ----
+#
+# set the source of the data 
 dataFile <- "./data/household_power_consumption.txt"
 
-conn <- file(dataFile, open = "rt")
+# create a read-only connection to the text file
+connection <- file(dataFile, open = "rt")
 
+# loop control variable
 x <- TRUE
 
+# loop until we find the date of interest
 while (x)
 {
-    # explain this thoroughly
-    x <- !grepl("31/1/2007;23:59:00", readLines(conn, n=1))
+    # read one line at a time until we find the last entry prior
+    # to 1/2/2007.  Once this is found, x becomes FALSE and the
+    # loop exits.  We need to stop at the entry before the desired
+    # date so that read.table will start at the correct date
+    x <- !grepl("31/1/2007;23:59:00", readLines(connection, n = 1))
 }
 
-ret <- read.table(conn, header = F, na.strings = "?", sep = ";", nrows = 2880) 
+# read from the connection (2 days X 24 hours X 60 minutes) of data
+# according to the instructions, NAs are represented as ?
+# the data is delimited by ;
+data <- read.table(connection, header = F, na.strings = "?", sep = ";", nrows = 2880) 
 
-close(conn)
+# cleanup
+close(connection)
 
-# Section Two ----
-colnames(ret) <- colnames(read.table(dataFile, header = T, nrows = 1, sep = ";"))
+# Section Two: Massage the data ----
+#
+# read the first line of the file to get the column names for our subset
+colnames(data) <- colnames(read.table(dataFile, header = T, nrows = 1, sep = ";"))
 
-# Section Three ----
+# Section Three: Plot the data ----
+#
+# open the PNG device
 png("plot1.png")
-with(ret, hist(Global_active_power, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)"))
+
+# plot
+with(data, hist(Global_active_power, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)"))
+
+# write
 dev.off()
