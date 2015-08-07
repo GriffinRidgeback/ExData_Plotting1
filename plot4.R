@@ -26,7 +26,7 @@ with(ret, plot(Sub_metering_1, type = "n", ylab = "Energy sub metering"))
 lines(ret$Sub_metering_1)
 lines(ret$Sub_metering_2, col = "red")
 lines(ret$Sub_metering_3, col = "blue")
-legend("topright", lty = 1, col = c("black", "red", "blue"), legend = names(ret)[7:9])
+legend("topright", lty = 1, bty = "n", col = c("black", "red", "blue"), legend = names(ret)[7:9])
 
 # r1, c2
 with(ret, plot(Voltage, type = "l", ylab = "Voltage", xlab = "datetime"))
